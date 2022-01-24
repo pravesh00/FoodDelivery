@@ -10,6 +10,7 @@ import {NavigationContainer, NavigationController} from "@react-navigation/nativ
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from './src/components/typography/text.component';
 import { SafeArea } from './src/components/utility/safe-area.component';
+import {Ionicons} from '@expo/vector-icons';
 
 const Tab=createBottomTabNavigator();
 
@@ -42,8 +43,23 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={{
+            screenOptions={({route})=>({
+              tabBarIcon:({focused,color,size})=>{
+                let iconName;
+                if (route.name === "Restraunts") {
+                  iconName = "md-restaurant";
+                } else if (route.name === "Settings") {
+                  iconName = "md-settings";
+                } else if (route.name === "Map") {
+                  iconName = "md-map";
+                }
+                return <Ionicons name={iconName} color={color} size={size}/>;
+              },
               headerShown:false
+            })}
+            tabBarOptions={{
+              activeTintColor: "tomato",
+              inactiveTintColor: "gray",
             }}
           >
           <Tab.Screen name="Restraunts" component={RestrauntScreen}></Tab.Screen>
