@@ -1,58 +1,21 @@
 import React from 'react';
-import { Text,StyleSheet,Image } from 'react-native';
-import { Card } from 'react-native-paper';
-import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import { Spacer } from '../../../components/spacers/spacer.component';
+import { Text } from '../../../components/typography/text.component';
+import { 
+    Address,
+    Info,
+    Icon,
+    RestrauntCard,
+    RestrauntCardCover,
+    Rating,
+    RatingText,
+    Section,
+    SectionEnd,
+    Open } from './restraunt-info.styles';
 
-const Address=styled.Text`
-    font-size:${(props)=>props.theme.fontSizes.caption};
-    font-family:${(props)=>props.theme.fonts.body};
-`;
-
-const Info=styled.View`
-    padding:${(props)=>props.theme.space[3]};
-`;
-
-const Title=styled.Text`
-    font-size:${(props)=>props.theme.fontSizes.body};
-    font-family:${(props)=>props.theme.fonts.heading};
-    color:${(props)=>props.theme.colors.ui.primary};
-`;
-const RestrauntCard=styled(Card)`
-    background-color:white;
-`;
-const RestrauntCardCover=styled(Card.Cover)`
-    padding:${(props)=>props.theme.space[3]};
-    background-color:white;
-`;
-
-const Rating=styled.View`
-    flex-direction:row;
-    padding-top:${(props)=>props.theme.space[2]};
-    padding-bottom:${(props)=>props.theme.space[1]};
-`;
-
-const RatingText=styled.Text`
-    padding:${(props)=>props.theme.space[0]};
-`;
-
-const Section=styled.View`
-    flex-direction:row;
-    align-items:center;
-`;
-
-const SectionEnd=styled.View`
-    flex:1;
-    flex-direction:row;
-    justify-content:flex-end;
-`;
-
-const Open=styled(SvgXml)`
-    width:20px
-`;
 
 export const RestrauntInfo =({restraunt ={}})=>{
     const {
@@ -72,7 +35,7 @@ export const RestrauntInfo =({restraunt ={}})=>{
         <RestrauntCard elevation={5} >
             <RestrauntCardCover source={{uri:photos[0]}} key={name} />
             <Info>
-            <Title>{name}</Title>
+            <Text variant="label">{name}</Text>
             <Section>
             <Rating>
             {ratingArray.map(()=>(
@@ -81,19 +44,20 @@ export const RestrauntInfo =({restraunt ={}})=>{
             <RatingText>{rating}</RatingText>
             <SectionEnd>
                 {isClosedTemporarily && (
-                    <Text variant="label" style={{color:"red", fontSize:12,marginLeft:4,marginRight:4}}>
+                    <Text variant="error">
                         CLOSED TEMPORARILY
                     </Text>
                 )}
                 <Spacer position="left" size="large"></Spacer>
                 {isOpenNow && <Open xml={open} width={25} height={25}></Open>}
                 <Spacer position="left" size="large"></Spacer>
-                <Image source={{uri:icon}} style={{width:15, height:15}}></Image>
+                <Icon source={{uri:icon}}></Icon>
             </SectionEnd>
             </Rating>
             </Section>
             <Address>{address}</Address>
+            
             </Info>
         </RestrauntCard>
-    )
+    );
 };

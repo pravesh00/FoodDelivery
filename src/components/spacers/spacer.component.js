@@ -26,8 +26,8 @@ const SpacerView =styled.View`
     ${({variant})=>variant};
 `;
 
-export const Spacer=({position,size,childern})=>{
+export const Spacer=({position,size})=>{
     const theme=useTheme();
     const variant=getVariant(position,size,theme);
-    return <SpacerView variant={variant}>{childern}</SpacerView>;
+    return <SpacerView variant={variant}></SpacerView>;
 }
