@@ -14,6 +14,12 @@ import {Ionicons} from '@expo/vector-icons';
 
 const Tab=createBottomTabNavigator();
 
+const TAB_ICON={
+  Restraunts:"md-restaurant",
+  Settings:"md-settings",
+  Map:"md-map"
+};
+
 const Settings=()=>(
   <SafeArea>
   <Text variant="label">Settings</Text>
@@ -24,6 +30,15 @@ const Map=()=>(
   <Text variant="label">Map</Text>
   </SafeArea>
 );
+
+const tabBarIcon=(Icon)=>({size,color})=><Ionicons name={Icon} color={color} size={size}/>;
+const screenOptions=({route})=>{
+  const Icon=TAB_ICON[route.name];
+    return{
+      tabBarIcon:tabBarIcon(Icon),
+      headerShown:false
+    }
+}
 
 
 export default function App() {
@@ -43,28 +58,15 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={({route})=>({
-              tabBarIcon:({focused,color,size})=>{
-                let iconName;
-                if (route.name === "Restraunts") {
-                  iconName = "md-restaurant";
-                } else if (route.name === "Settings") {
-                  iconName = "md-settings";
-                } else if (route.name === "Map") {
-                  iconName = "md-map";
-                }
-                return <Ionicons name={iconName} color={color} size={size}/>;
-              },
-              headerShown:false
-            })}
+            screenOptions={screenOptions}
             tabBarOptions={{
               activeTintColor: "tomato",
               inactiveTintColor: "gray",
             }}
           >
           <Tab.Screen name="Restraunts" component={RestrauntScreen}></Tab.Screen>
-          <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
           <Tab.Screen name="Map" component={Map}></Tab.Screen>
+          <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
           </Tab.Navigator>
           </NavigationContainer>
       </ThemeProvider>
