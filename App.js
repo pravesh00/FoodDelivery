@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from './src/components/typography/text.component';
 import { SafeArea } from './src/components/utility/safe-area.component';
 import {Ionicons} from '@expo/vector-icons';
+import { RestarauntContextProvider } from './src/services/restaurants/restaurant.context';
 
 const Tab=createBottomTabNavigator();
 
@@ -56,6 +57,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <RestarauntContextProvider>
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={screenOptions}
@@ -69,6 +71,7 @@ export default function App() {
           <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
           </Tab.Navigator>
           </NavigationContainer>
+          </RestarauntContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto"></ExpoStatusBar>
     

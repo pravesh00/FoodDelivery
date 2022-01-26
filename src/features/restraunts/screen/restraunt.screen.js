@@ -1,33 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Searchbar} from 'react-native-paper';
 import {RestrauntInfo} from "../component/restraunt-info.component";
 import { SearchContainer,RestrauntInfoContainer,RestaruntList } from './restraunt.screen.styles';
 import { SafeArea } from '../../../components/utility/safe-area.component';
+import { RestarauntContext } from '../../../services/restaurants/restaurant.context';
 
-const data=[
-  {name:1},
-  {name:2},
-  {name:3},
-  {name:4},
-  {name:5},
-  {name:6},
-  {name:7}
-];
 
-export const RestrauntScreen = () =>(
+export const RestrauntScreen = () =>{
+  const {restaraunts,isLoading,error}=useContext(RestarauntContext);
+  return(
     <SafeArea>
         <SearchContainer>
           <Searchbar placeholder='Search'></Searchbar>
         </SearchContainer>
         <RestrauntInfoContainer>
           <RestaruntList
-            data={data}
-            renderItem={()=><RestrauntInfo/>
+            data={restaraunts}
+            renderItem={({item})=><RestrauntInfo restraunt={item}/>
             }
             keyExtractor={(item)=>item.name}
             showsVerticalScrollIndicator={false}
           />
         </RestrauntInfoContainer>
       </SafeArea>
-);
+)};
 
