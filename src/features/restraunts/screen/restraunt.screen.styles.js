@@ -17,3 +17,9 @@ export const RestaruntList=styled(FlatList).attrs({
 })`
 
 `;
+
+export const LoadingContainer=styled.View`
+  position:absolute;
+  top:50%;
+  left:50%;
+`;
