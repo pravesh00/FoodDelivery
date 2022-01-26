@@ -12,6 +12,7 @@ import { Text } from './src/components/typography/text.component';
 import { SafeArea } from './src/components/utility/safe-area.component';
 import {Ionicons} from '@expo/vector-icons';
 import { RestarauntContextProvider } from './src/services/restaurants/restaurant.context';
+import {LocationContextProvider} from './src/services/location/location.context';
 
 const Tab=createBottomTabNavigator();
 
@@ -57,6 +58,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <LocationContextProvider>
         <RestarauntContextProvider>
         <NavigationContainer>
           <Tab.Navigator
@@ -72,6 +74,7 @@ export default function App() {
           </Tab.Navigator>
           </NavigationContainer>
           </RestarauntContextProvider>
+          </LocationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto"></ExpoStatusBar>
     

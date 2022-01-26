@@ -6,9 +6,11 @@ import { SafeArea } from '../../../components/utility/safe-area.component';
 import { RestarauntContext } from '../../../services/restaurants/restaurant.context';
 import { Colors } from 'react-native-paper';
 import { Loading } from '../../../components/utility/loading.component';
+import {LocationContext} from '../../../services/location/location.context';
 
 export const RestrauntScreen = () =>{
   const {restaraunts,isLoading,error}=useContext(RestarauntContext);
+  const {locations}=useContext(LocationContext);
   return(
     <SafeArea>
         {

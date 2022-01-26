@@ -8,7 +8,8 @@ export const RestarauntContextProvider=({children})=>{
     const [restaraunts,setRestaraunts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
     const [error,setError]=useState(null);
-    console.log(error);
+    if(!error)
+    {console.log(error);}
 
     const retrieveRestaraunts=()=>{
         setIsLoading(true);
