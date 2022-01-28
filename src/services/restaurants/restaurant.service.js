@@ -17,6 +17,7 @@ export const restrauntsTransform=({results})=>{
         });
         return {
             ...restaraunt,
+            address:restaraunt.vicinity,
             isOpenNow:restaraunt.opening_hours && restaraunt.opening_hours.open_now,
             isClosedTemporarily:restaraunt.bussiness_status=="CLOSED_TEMPORARILY",
         }
