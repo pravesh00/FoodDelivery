@@ -6,6 +6,7 @@ import { Text } from "../../components/typography/text.component";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import{Settings} from "../../features/restraunts/screen/settings.screen";
 import{Map} from "../../features/restraunts/screen/map.screen";
+import { RestarauntNavigator } from "./restaraunts.navigator";
 
 const Tab=createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ export const AppNavigator=()=>{
           <Tab.Navigator
             screenOptions={screenOptions}
           >
-          <Tab.Screen name="Restraunts" component={RestrauntScreen}></Tab.Screen>
+          <Tab.Screen name="Restraunts" component={RestarauntNavigator}></Tab.Screen>
           <Tab.Screen name="Map" component={Map}></Tab.Screen>
           <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
           </Tab.Navigator>

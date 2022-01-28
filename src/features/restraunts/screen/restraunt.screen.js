@@ -6,8 +6,9 @@ import { RestarauntContext } from '../../../services/restaurants/restaurant.cont
 import { Colors } from 'react-native-paper';
 import { Loading } from '../../../components/utility/loading.component';
 import { Search } from '../component/search.component';
+import { TouchableOpacity } from 'react-native';
 
-export const RestrauntScreen = () =>{
+export const RestrauntScreen = ({navigation}) =>{
   const {restaraunts,isLoading,error}=useContext(RestarauntContext);
   return(
     <SafeArea>
@@ -22,7 +23,13 @@ export const RestrauntScreen = () =>{
         <RestrauntInfoContainer>
           <RestaruntList
             data={restaraunts}
-            renderItem={({item})=><RestrauntInfo restraunt={item}/>
+            renderItem={({item})=>(
+            <TouchableOpacity onPress={()=>{navigation.navigate("RestarauntDetails",{
+              data: item
+              });}}>
+            <RestrauntInfo restraunt={item}/>
+            </TouchableOpacity>
+            )
             }
             keyExtractor={(item)=>item.name}
             showsVerticalScrollIndicator={false}
