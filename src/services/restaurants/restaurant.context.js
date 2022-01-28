@@ -1,5 +1,5 @@
 import React, {useContext,useEffect,createContext,useState,useMemo} from "react";
-
+import {LocationContext} from "../location/location.context";
 import {restrauntRequest,restrauntsTransform} from "./restaurant.service";
 
 export const RestarauntContext=createContext();
@@ -8,13 +8,14 @@ export const RestarauntContextProvider=({children})=>{
     const [restaraunts,setRestaraunts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
     const [error,setError]=useState(null);
-    if(!error)
-    {console.log(error);}
+    const {locations}=useContext(LocationContext);
+    console.log(locations);
 
-    const retrieveRestaraunts=()=>{
+    const retrieveRestaraunts=(location)=>{
         setIsLoading(true);
+        setRestaraunts([]);
         setTimeout(()=>{
-            restrauntRequest()
+            restrauntRequest(location)
             .then(restrauntsTransform)
             .then((results)=>{
                 setIsLoading(false);
@@ -28,8 +29,11 @@ export const RestarauntContextProvider=({children})=>{
     }
 
     useEffect(()=>{
-        retrieveRestaraunts();
-    },[]);
+        if(locations){
+        const locationString=`${locations.lat},${locations.lng}`;
+        retrieveRestaraunts(locationString);
+        }
+    },[locations]);
     
     return (<RestarauntContext.Provider
         value={{

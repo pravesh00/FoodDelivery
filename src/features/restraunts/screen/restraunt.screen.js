@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
-import {Searchbar} from 'react-native-paper';
 import {RestrauntInfo} from "../component/restraunt-info.component";
-import { SearchContainer,RestrauntInfoContainer,RestaruntList,LoadingContainer } from './restraunt.screen.styles';
+import { RestrauntInfoContainer,RestaruntList,LoadingContainer } from './restraunt.screen.styles';
 import { SafeArea } from '../../../components/utility/safe-area.component';
 import { RestarauntContext } from '../../../services/restaurants/restaurant.context';
 import { Colors } from 'react-native-paper';
 import { Loading } from '../../../components/utility/loading.component';
-import {LocationContext} from '../../../services/location/location.context';
+import { Search } from '../component/search.component';
 
 export const RestrauntScreen = () =>{
   const {restaraunts,isLoading,error}=useContext(RestarauntContext);
-  const {locations}=useContext(LocationContext);
   return(
     <SafeArea>
         {
@@ -20,9 +18,7 @@ export const RestrauntScreen = () =>{
             </LoadingContainer>
           )
         }
-        <SearchContainer>
-          <Searchbar placeholder='Search'></Searchbar>
-        </SearchContainer>
+        <Search/>
         <RestrauntInfoContainer>
           <RestaruntList
             data={restaraunts}
