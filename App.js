@@ -1,49 +1,13 @@
 import { StatusBar as ExpoStatusBar} from 'expo-status-bar';
 import React from "react";
-import { RestrauntScreen } from './src/features/restraunts/screen/restraunt.screen';
 import {ThemeProvider} from "styled-components/native";
 import {theme} from './src/infrastructure/theme';
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import AppLoading from 'expo-app-loading';
-import {NavigationContainer, NavigationController} from "@react-navigation/native";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from './src/components/typography/text.component';
-import { SafeArea } from './src/components/utility/safe-area.component';
-import {Ionicons} from '@expo/vector-icons';
+import { Navigation } from './src/infrastructure/navigation';
 import { RestarauntContextProvider } from './src/services/restaurants/restaurant.context';
 import {LocationContextProvider} from './src/services/location/location.context';
-
-const Tab=createBottomTabNavigator();
-
-const TAB_ICON={
-  Restraunts:"md-restaurant",
-  Settings:"md-settings",
-  Map:"md-map"
-};
-
-const Settings=()=>(
-  <SafeArea>
-  <Text variant="label">Settings</Text>
-  </SafeArea>
-);
-const Map=()=>(
-  <SafeArea>
-  <Text variant="label">Map</Text>
-  </SafeArea>
-);
-
-const tabBarIcon=(Icon)=>({size,color})=><Ionicons name={Icon} color={color} size={size}/>;
-const screenOptions=({route})=>{
-  const Icon=TAB_ICON[route.name];
-    return{
-      tabBarIcon:tabBarIcon(Icon),
-      headerShown:false,
-      tabBarActiveTintColor:"tomato",
-      tabBarInactiveTintColor:"grey"
-    }
-}
-
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -62,15 +26,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <LocationContextProvider>
         <RestarauntContextProvider>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={screenOptions}
-          >
-          <Tab.Screen name="Restraunts" component={RestrauntScreen}></Tab.Screen>
-          <Tab.Screen name="Map" component={Map}></Tab.Screen>
-          <Tab.Screen name="Settings" component={Settings}></Tab.Screen>
-          </Tab.Navigator>
-          </NavigationContainer>
+          <Navigation/>
           </RestarauntContextProvider>
           </LocationContextProvider>
       </ThemeProvider>
