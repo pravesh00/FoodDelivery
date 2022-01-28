@@ -38,7 +38,9 @@ const screenOptions=({route})=>{
   const Icon=TAB_ICON[route.name];
     return{
       tabBarIcon:tabBarIcon(Icon),
-      headerShown:false
+      headerShown:false,
+      tabBarActiveTintColor:"tomato",
+      tabBarInactiveTintColor:"grey"
     }
 }
 
@@ -63,10 +65,6 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator
             screenOptions={screenOptions}
-            tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
-            }}
           >
           <Tab.Screen name="Restraunts" component={RestrauntScreen}></Tab.Screen>
           <Tab.Screen name="Map" component={Map}></Tab.Screen>

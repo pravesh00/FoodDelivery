@@ -26,7 +26,8 @@ export const RestrauntInfo =({restraunt ={}})=>{
         address ='3795, Choudhary Gate, Johari Bazaar',
         isOpenNow= true,
         rating=4.5,
-        isClosedTemporarily=true
+        isClosedTemporarily=true,
+        placeId
 
     }=restraunt;
     
@@ -38,8 +39,8 @@ export const RestrauntInfo =({restraunt ={}})=>{
             <Text variant="label">{name}</Text>
             <Section>
             <Rating>
-            {ratingArray.map(()=>(
-            <SvgXml xml={star} width={20} height={20}></SvgXml>
+            {ratingArray.map((_,i)=>(
+            <SvgXml key={`star-${placeId}-${i}`} xml={star} width={20} height={20}></SvgXml>
             ))}
             <RatingText>{rating}</RatingText>
             <SectionEnd>
