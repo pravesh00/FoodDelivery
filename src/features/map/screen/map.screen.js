@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { ViewBase } from "react-native";
 import MapView from "react-native-maps";
 import { useContext, useState } from "react/cjs/react.development";
 import { LocationContext } from "../../../services/location/location.context";
-import { locations } from "../../../services/location/location.mock";
 import { RestarauntContext } from "../../../services/restaurants/restaurant.context";
+import { MapCallout } from "../component/map-callout.component";
 import {Search} from "../component/search.component";
 
 export const Map=()=>{
@@ -41,7 +40,11 @@ export const Map=()=>{
                     longitude:res.geometry.location.lng
                   }}
         
-        />)
+        >
+          <MapView.Callout>
+          <MapCallout restaraunt={res}></MapCallout>
+          </MapView.Callout>
+        </MapView.Marker>)
       })}
     </MapView>
   </>);
