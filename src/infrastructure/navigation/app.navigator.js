@@ -1,11 +1,8 @@
 import {NavigationContainer} from "@react-navigation/native";
-import { RestrauntScreen} from "../../features/restraunts/screen/restraunt.screen";
 import {Ionicons} from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text } from "../../components/typography/text.component";
-import { SafeArea } from "../../components/utility/safe-area.component";
 import{Settings} from "../../features/restraunts/screen/settings.screen";
-import{Map} from "../../features/restraunts/screen/map.screen";
+import{Map} from "../../features/map/screen/map.screen";
 import { RestarauntNavigator } from "./restaraunts.navigator";
 
 const Tab=createBottomTabNavigator();
