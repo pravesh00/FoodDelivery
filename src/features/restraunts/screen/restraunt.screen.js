@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext , useState } from 'react';
 import {RestrauntInfo} from "../component/restraunt-info.component";
 import { RestrauntInfoContainer,RestaruntList,LoadingContainer } from './restraunt.screen.styles';
 import { SafeArea } from '../../../components/utility/safe-area.component';
@@ -7,12 +7,13 @@ import { Colors } from 'react-native-paper';
 import { Loading } from '../../../components/utility/loading.component';
 import { Search } from '../component/search.component';
 import { TouchableOpacity } from 'react-native';
-import {FavouritesContext} from "../../../services/favourites/favourites.context";
+import { FavouritesBar } from '../../../components/favourites/favourites-bar.component';
+import { FavouritesContext } from '../../../services/favourites/favourites.context';
 
 export const RestrauntScreen = ({navigation}) =>{
   const {restaraunts,isLoading,error}=useContext(RestarauntContext);
-  const {favourites,addToFavourites,removeFromFavourites}=useContext(FavouritesContext);
-  console.log( `fav: ${favourites}`);
+  const [isFavouriteToggled,setIsFavouriteToggled]=useState(false);
+  const {favourites}=useContext(FavouritesContext);
 
   return(
     <SafeArea>
@@ -23,7 +24,8 @@ export const RestrauntScreen = ({navigation}) =>{
             </LoadingContainer>
           )
         }
-        <Search/>
+        <Search isFavouriteToggled={isFavouriteToggled} onFavouriteToggled={()=>setIsFavouriteToggled(!isFavouriteToggled)}/>
+        {isFavouriteToggled && <FavouritesBar favourites={favourites} navigation={navigation}/>}
         <RestrauntInfoContainer>
           <RestaruntList
             data={restaraunts}

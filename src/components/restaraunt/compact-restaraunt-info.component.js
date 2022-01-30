@@ -24,8 +24,8 @@ const Item =styled.View`
 
 const isAndroid = Platform.OS==="android";
 
-export const CompactRestarauntInfo=({restarauant})=>{
-    const Image=isAndroid?CompactWebView:CompactImage;
+export const CompactRestarauntInfo=({restarauant,isMap})=>{
+    const Image=(isAndroid && isMap)?CompactWebView:CompactImage;
     return (
         <Item>
             <Image source={{uri:restarauant.photos[0]}} />

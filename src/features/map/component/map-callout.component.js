@@ -3,6 +3,6 @@ import { CompactRestarauntInfo } from "../../../components/restaraunt/compact-re
 
 export const MapCallout=({restaraunt})=>{
     return (
-        <CompactRestarauntInfo restarauant={restaraunt}/>
+        <CompactRestarauntInfo restarauant={restaraunt} isMap/>
     )
 }

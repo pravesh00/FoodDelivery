@@ -3,7 +3,7 @@ import { Searchbar } from "react-native-paper";
 import { useContext, useEffect, useState } from "react";
 import { LocationContext } from "../../../services/location/location.context";
 
-export const Search=()=>{
+export const Search=({isFavouriteToggled,onFavouriteToggled})=>{
     const {keyword,search} =useContext(LocationContext);
     const [searchKeyword,setSearchKeyword]=useState(keyword);
     
@@ -14,6 +14,8 @@ export const Search=()=>{
     return(
         <SearchContainer>
           <Searchbar placeholder='Search'
+          icon={isFavouriteToggled?"heart":"heart-outline"}
+          onIconPress={onFavouriteToggled}
           value={searchKeyword}
           onSubmitEditing={()=>{
               search(searchKeyword);
