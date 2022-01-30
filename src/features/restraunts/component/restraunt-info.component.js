@@ -4,6 +4,7 @@ import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import { Spacer } from '../../../components/spacers/spacer.component';
 import { Text } from '../../../components/typography/text.component';
+import { Favourite } from '../../../components/favourites/favourites.component';
 import { 
     Address,
     Info,
@@ -34,6 +35,7 @@ export const RestrauntInfo =({restraunt ={}})=>{
     const ratingArray = Array.from(new Array(Math.floor(rating)));
     return (
         <RestrauntCard elevation={5} >
+            <Favourite restraunt={restraunt}/>
             <RestrauntCardCover source={{uri:photos[0]}} key={name} />
             <Info>
             <Text variant="label">{name}</Text>

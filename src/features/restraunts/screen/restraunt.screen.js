@@ -7,9 +7,13 @@ import { Colors } from 'react-native-paper';
 import { Loading } from '../../../components/utility/loading.component';
 import { Search } from '../component/search.component';
 import { TouchableOpacity } from 'react-native';
+import {FavouritesContext} from "../../../services/favourites/favourites.context";
 
 export const RestrauntScreen = ({navigation}) =>{
   const {restaraunts,isLoading,error}=useContext(RestarauntContext);
+  const {favourites,addToFavourites,removeFromFavourites}=useContext(FavouritesContext);
+  console.log( `fav: ${favourites}`);
+
   return(
     <SafeArea>
         {

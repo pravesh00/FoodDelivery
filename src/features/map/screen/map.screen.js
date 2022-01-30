@@ -6,7 +6,7 @@ import { RestarauntContext } from "../../../services/restaurants/restaurant.cont
 import { MapCallout } from "../component/map-callout.component";
 import {Search} from "../component/search.component";
 
-export const Map=()=>{
+export const Map=({navigation})=>{
   const {locations}=useContext(LocationContext);
   const {restaraunts}=useContext(RestarauntContext);
   const [latDelta,setLatDelta]=useState(0);
@@ -41,7 +41,7 @@ export const Map=()=>{
                   }}
         
         >
-          <MapView.Callout>
+          <MapView.Callout onPress={()=>navigation.navigate("RestarauntDetails",{data:res})}>
           <MapCallout restaraunt={res}></MapCallout>
           </MapView.Callout>
         </MapView.Marker>)

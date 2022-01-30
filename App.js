@@ -8,6 +8,7 @@ import AppLoading from 'expo-app-loading';
 import { Navigation } from './src/infrastructure/navigation';
 import { RestarauntContextProvider } from './src/services/restaurants/restaurant.context';
 import {LocationContextProvider} from './src/services/location/location.context';
+import {FavouritesContextProvider} from "./src/services/favourites/favourites.context";
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -24,11 +25,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        <FavouritesContextProvider>
         <LocationContextProvider>
         <RestarauntContextProvider>
           <Navigation/>
           </RestarauntContextProvider>
           </LocationContextProvider>
+          </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto"></ExpoStatusBar>
     
