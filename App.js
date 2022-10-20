@@ -12,7 +12,7 @@ import {FavouritesContextProvider} from "./src/services/favourites/favourites.co
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
-    Lato_400Regular,
+    Oswald_400Regular,
   });
 
   const [latoLoaded] = useLato({
